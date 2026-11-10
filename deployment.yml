@@ -1,0 +1,23 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend_recheck-deployment
+  labels:
+    app: backend_recheck-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend_recheck-app
+  template:
+    metadata:
+      labels:
+        app: backend_recheck-app
+    spec:
+      containers:
+        - name: backend_recheck-app
+          image: snk6182/backend_recheck:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
